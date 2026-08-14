@@ -24,7 +24,6 @@ function renderList(appId) {
 
         // Her tilføjer jeg en event listener til mySletButton, som kalder removeCallback med index og appId som argumenter, når der klikkes på knappen.
         mySletButton.addEventListener("click", () => removeCallback(index, appId))
-        
 
         // Her appender jeg myWishParagraph, mySletButton og myWishRow til myListContainer, så de vises på siden.
         myWishRow.appendChild(myWishParagraph);
@@ -41,6 +40,8 @@ function removeCallback(index, appId) {
     sletOnske(index);
     renderList(appId);
 }
+
+
 
 
 // #endregion Controller --------------------------------------
