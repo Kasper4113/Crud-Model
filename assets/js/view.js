@@ -47,6 +47,12 @@ function renderstatic(appId) {
             return; // gør ikke noget hvis feltet er tomt.
         }
 
+        // Tjek for duplikat før tilføjelse
+        if (findesOnske(value)) {
+            alert("Ønsket findes allerede");
+            return;
+        }
+
         console.log(tilfojOnske(value));
         renderList("wishListContainer");
 

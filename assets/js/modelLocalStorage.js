@@ -1,9 +1,28 @@
 // #region Model --------------------------------------------------------
 
-let wishlist = [
+// placeholder ønsker
+const standardWishlist = [
   { wish: "kikkert --placeholder--" },
   { wish: "robotarm --placeholder--" }
 ];
+
+// her har jeg lavet et nyt array, da jeg gerne vil beholde placeholders, men vil ikke have noget hardcoded i min localStorage
+let wishlist = [];
+
+// Her henter jeg min wishlist fra local storage.
+function hentFraLocalStorage() {
+  const gemtData = localStorage.getItem("wishlist");
+  if (gemtData) {
+    wishlist = JSON.parse(gemtData);
+  } else {
+    wishlist = standardWishlist;
+  }
+}
+
+// Gemmer wishlist i localStorage som JSON-tekst.
+function gemILocalStorage() {
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+}
 
 // Her henter jeg alle mine wishes, som er gemt i arrayet wishlist.
 function hentAlle() {
@@ -14,6 +33,7 @@ function hentAlle() {
 function tilfojOnske(wish) {
   const nytOnske = { wish: wish };
   wishlist.push(nytOnske);
+  gemILocalStorage();
   return "ok";
 }
 
@@ -41,6 +61,7 @@ function opdaterOnske(index, dataObjekt) {
     return "fejl";
   }
   wishlist[index] = dataObjekt;
+  gemILocalStorage();
   return "ok";
 }
 
@@ -50,21 +71,11 @@ function sletOnske(index) {
     return "fejl";
   }
   wishlist.splice(index, 1); // her bruger jeg splice til at fjerne et ønske fra arrayet wishlist, ved at bruge index som parameter.
+  gemILocalStorage();
   return "ok";
 }
 
-// Tilføjer ønsker
-console.log(tilfojOnske("ufo --placeholder--"));
-console.log(tilfojOnske("ny bil --placeholder--"));
-
-console.log("Før sletning:");
-console.log([...hentAlle()]);
-
-// Fjerner ønsker 
-console.log(sletOnske(2)); // den her fjerner "ufo"
-console.log(sletOnske(20));
-
-console.log("Efter Slettede Ønsker:");
-console.log([...hentAlle()]);
+// Henter wishlist fra localStorage (eller standard), inden vi bruger den.
+hentFraLocalStorage();
 
 // #endregion Model --------------------------------------------------------
