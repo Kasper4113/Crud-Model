@@ -18,7 +18,7 @@ function renderList(appId) {
 
         // Her laver jeg en slet knap, som skal slette ønsket, når der klikkes på den og tilføjer den til myWishRow.
         const mySletButton = document.createElement("button");
-        mySletButton.innerText = "Houdini Lortet";
+        mySletButton.innerText = "slet";
         mySletButton.className = "deleteBtn";
 
 
@@ -32,6 +32,7 @@ function renderList(appId) {
     });
 }
 
+// Min reele controller
 renderstatic("app");
 
 

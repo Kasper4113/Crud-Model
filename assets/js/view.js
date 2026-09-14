@@ -24,7 +24,7 @@ function renderstatic(appId) {
     // Her laver jeg en knap, som skal tilføje et ønske, når der klikkes på den og tilføjer den til myAppcontainer.
     const myButton = document.createElement("button");
     myButton.id = "addWishBtn";
-    myButton.innerText = "Tilføj Ønske";
+    myButton.innerText = "Tilføj";
     myHeader.appendChild(myButton);
 
     // Her laver jeg en paragraf, som skal vise teksten "Her er min Ønskeliste" og tilføjer den til myAppcontainer.

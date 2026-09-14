@@ -1,97 +1,184 @@
+:root {
+    --bg: #f4efe9;
+    --panel: rgba(18, 24, 29, 0.68);
+    --panel-border: rgba(196, 175, 155, 0.35);
+    --text: #edf3f2;
+    --muted: #d1d7d4;
+    --accent: #d9b79d;
+    --accent-soft: rgba(217, 183, 157, 0.18);
+    --sage: #dfe9e3;
+    --shadow: rgba(0, 0, 0, 0.28);
+}
+
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    background-color: rgb(221, 221, 221);
+    min-height: 100vh;
+    padding: 2.5rem 1.25rem;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 12% 18%, rgba(96, 118, 128, 0.3), transparent 22%),
+        radial-gradient(circle at 25% 68%, rgba(52, 73, 80, 0.24), transparent 25%),
+        radial-gradient(circle at 52% 18%, rgba(77, 58, 71, 0.22), transparent 28%),
+        radial-gradient(circle at 72% 36%, rgba(135, 96, 70, 0.18), transparent 18%),
+        radial-gradient(circle at 63% 80%, rgba(42, 61, 53, 0.2), transparent 24%),
+        radial-gradient(circle at 86% 82%, rgba(110, 78, 60, 0.15), transparent 19%),
+        radial-gradient(circle at 92% 14%, rgba(255,255,255,0.04), transparent 12%),
+        linear-gradient(135deg, #090d12 0%, #0d1419 18%, #171d22 38%, #12191d 58%, #17140f 100%);
+    background-attachment: fixed;
+    position: relative;
 }
 
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(120deg, rgba(255,255,255,0.04), rgba(255,255,255,0) 30%, rgba(255,255,255,0.03) 52%, rgba(255,255,255,0.01) 74%, rgba(255,255,255,0));
+    mix-blend-mode: screen;
+    opacity: 0.5;
+}
 
+#app {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 1.25rem 1rem 1rem;
+    border-radius: 22px;
+    background: rgba(16, 21, 27, 0.52);
+    border: 1px solid var(--panel-border);
+    box-shadow: 0 20px 42px rgba(0, 0, 0, 0.38), 0 0 28px rgba(154, 118, 84, 0.08), inset 0 1px 0 rgba(255,255,255,0.08);
+}
 
+.page-switcher {
+    position: fixed;
+    top: 16px;
+    right: 18px;
+    z-index: 20;
+    display: inline-block;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+    border: 1px solid rgba(255,255,255,0.18);
+}
 
-/* #region Statics ----------------------------------- */
+.page-switcher:hover {
+    opacity: 0.9;
+}
 
 .myHeader {
-    /* min overskrift */
-    h1 {
-        margin: 2rem 5rem .3rem 5vw;
-        text-decoration: underline;
-        text-shadow: 1px 1px 2px rgb(169, 169, 169);
-    }
-
-    /* wish input feltet */
-    input {
-        width: 60vw;
-        margin: .3rem .3rem .3rem 5vw;
-        padding: .1rem .3rem .1rem .3rem;
-        border-radius: 4px;
-        border: 1px solid black;
-        padding: .4rem .8rem .4rem .8rem;
-        background: linear-gradient(to right,rgb(250, 220, 160),rgb(255, 197, 89));
-        color: black;
-        text-shadow: 1px 1px 2px rgb(169, 169, 169);
-    }
-
-    /* min tilføj wish knap */
-    button {
-        border-radius: 4px;
-        border: 1px solid black;
-        background: linear-gradient(to right,rgb(255, 206, 108),rgb(255, 166, 0));
-        padding: .4rem .8rem .4rem .8rem;
-        margin: .3rem 5vw .3rem .3rem;
-        text-shadow: 1px 1px 2px rgb(169, 169, 169);
-    }
-    p {
-        margin-left: 5vw;
-    } 
-}
-
-/* #endregion statics ----------------------------------- */
-
-
-/* #region Dynamics ----------------------------------- */
-
-.wishListContainer {
-    /* selve ønskelisten */
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-
-    /* min List række */
-    div {
-        border: 1px solid black;
-        border-radius: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 .5rem 0 .5rem;
-        margin: 0 5vw 0 5vw;
-        background: linear-gradient(to right,rgb(250, 220, 160),rgb(240, 179, 67));
-        text-shadow: 1px 1px 2px rgb(169, 169, 169);
-    }
-
-    /* Min delete wish knap */
-    button {
-        border-radius: 4px;
-        border: 1px solid black;
-        background: linear-gradient(to right,rgb(255, 190, 60),rgb(255, 166, 0));
-        color: black;
-        padding: .4rem .8rem .4rem .8rem;
-        text-shadow: 1px 1px 2px rgb(169, 169, 169);
-    }
+    gap: 0.9rem;
+    padding: 1.25rem 1.1rem 1rem;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(17,22,27,0.94), rgba(25,31,35,0.74));
+    border: 1px solid var(--panel-border);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
+.myHeader h1 {
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    line-height: 1.2;
+    text-decoration: underline;
+    color: var(--text);
+    text-shadow: 0 0 16px rgba(255,255,255,0.08);
+}
 
+.myHeader input {
+    width: 100%;
+    padding: 0.8rem 0.9rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.08);
+    color: var(--text);
+    font-size: 1rem;
+    outline: none;
+}
 
-/* Wishrow, kan fungere som en vej til (wishText & deleteBtn) */
+.myHeader input::placeholder {
+    color: var(--muted);
+    opacity: 1;
+}
 
+.myHeader input:focus {
+    border-color: rgba(217, 183, 157, 0.72);
+    box-shadow: 0 0 0 3px rgba(217,183,157,0.12);
+}
 
+.myHeader button {
+    align-self: flex-start;
+    border: none;
+    border-radius: 999px;
+    padding: 0.75rem 1.2rem;
+    background: linear-gradient(135deg, #c5b597 0%, #8aa19b 34%, #ab795f 100%);
+    color: white;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    box-shadow: 0 14px 28px rgba(10, 18, 24, 0.4), 0 0 0 1px rgba(255,255,255,0.14), 0 0 24px rgba(171, 121, 95, 0.18);
+}
 
+.myHeader p {
+    margin: 0.2rem 0 0;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
 
-/* #endregion ----------------------------------- */
+.wishListContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1rem;
+    padding: 0.25rem 0 0;
+}
 
+.wishListContainer div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(17,22,27,0.9), rgba(25,31,35,0.7));
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+}
 
+.wishListContainer button {
+    border: none;
+    border-radius: 999px;
+    padding: 0.55rem 0.9rem;
+    background: linear-gradient(135deg, rgba(224, 188, 154, 0.3), rgba(161, 132, 109, 0.28));
+    color: #f9e2cc;
+    font-weight: 800;
+    cursor: pointer;
+}
 
+@media (max-width: 520px) {
+    body {
+        padding: 1.25rem 0.9rem;
+    }
+
+    #app {
+        padding: 0.9rem 0.7rem;
+    }
+
+    .myHeader {
+        padding: 1rem 0.9rem 0.9rem;
+    }
+}
 
